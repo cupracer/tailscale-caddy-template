@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+
+  tscaddy:
+    build:
+      context: ./tscaddy
+    environment:
+      TAILSCALE_AUTH_KEY: tskey-<changeme>
+      TAILSCALE_HOSTNAME: nginx
+      TAILSCALE_DOMAIN: <my-tailscale-domain>
+      TARGET_SERVICE: nginx
+      TARGET_PORT: 80
+    depends_on:
+      - nginx
+
+  nginx:
+    image: nginx
+
